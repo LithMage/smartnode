@@ -63,5 +63,5 @@ printf "Press Enter to continue: "
 read IGNORE
 
 # Reboot the server
-echo "/nRebooting."
+echo "\nRebooting."
 sudo reboot

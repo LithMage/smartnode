@@ -25,12 +25,11 @@ fi
 # Change the directory to ~/smartnode/
 cd $dir
 
-echo "Downloading scripts makerun, checkdaemon, upgrade, clearlog..."
+echo "Downloading scripts makerun, checkdaemon, clearlog..."
 
 # Download the appropriate scripts
 wget https://raw.githubusercontent.com/SmartCash/smartnode/master/makerun.sh
 wget https://raw.githubusercontent.com/SmartCash/smartnode/master/checkdaemon.sh
-wget https://raw.githubusercontent.com/SmartCash/smartnode/master/upgrade.sh
 wget https://raw.githubusercontent.com/SmartCash/smartnode/master/clearlog.sh
 
 echo "Adding scripts to scheduler..."
@@ -42,10 +41,6 @@ echo "makerun added"
 (crontab -l 2>/dev/null | grep -v -F "smartnode/checkdaemon.sh" ; echo "*/30 * * * * ~/smartnode/checkdaemon.sh" ) | crontab -
 echo "checkdaemon added"
 
-# Create a cronjob for making sure smartcashd is always up-to-date
-(crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "*/120 * * * * ~/smartnode/upgrade.sh" ) | crontab -
-echo "upgrade added"
-
 # Create a cronjob for clearing the log file
 (crontab -l 2>/dev/null | grep -v -F "smartnode/clearlog.sh" ; echo "0 0 */2 * * ~/smartnode/clearlog.sh" ) | crontab -
 echo "clearlog added"
@@ -54,7 +49,6 @@ echo "Making scripts executable..."
 # Give execute permission to the cron scripts
 chmod 0700 ./makerun.sh
 chmod 0700 ./checkdaemon.sh
-chmod 0700 ./upgrade.sh
 chmod 0700 ./clearlog.sh
 
 echo "ATENTION: Server will now be rebooted, you will be disconected and will need to login to server again."

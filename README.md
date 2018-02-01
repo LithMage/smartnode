@@ -10,8 +10,8 @@ These scripts are downloaded from original Git: https://github.com/SmartCash/sma
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:
 ```
-wget https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
-bash ./install_simple_upkeep.sh
+wget -O ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
+bash ~/install_simple_upkeep.sh
 ```
 
 #### Script will reboot your server.

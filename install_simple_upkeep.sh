@@ -41,7 +41,7 @@ echo "makerun added"
 echo "checkdaemon added"
 
 # Create a cronjob for clearing the log file
-(crontab -l 2>/dev/null | grep -v -F "smartnode/clearlog.sh" ; echo "0 0 */2 * * ~/smartnode/clearlog.sh" ) | crontab -
+(crontab -l 2>/dev/null | grep -v -F "truncate --size 0 ~/.smartcash/debug.log" ; echo "*/5 * * * * truncate --size 0 ~/.smartcash/debug.log" ) | crontab -
 echo "clearlog added"
 
 echo "Making scripts executable..."

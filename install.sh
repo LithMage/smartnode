@@ -15,15 +15,14 @@ if ! (dpkg -s smartcashd | grep -F "ok installed") &>/dev/null; then
 	read IGNORE
 fi
 
-dir="~/smartnode"
-if ! [ -d "$dir" ]
+if ! [ -d "~/smartnode/" ]
 then
-	echo "Creating $dir"
-	mkdir $dir
+	echo "Creating ~/smartnode/"
+	mkdir ~/smartnode/
 fi
 
 # Change the directory to ~/smartnode/
-cd $dir
+cd ~/smartnode/
 
 echo "Downloading scripts makerun, checkdaemon, clearlog..."
 

@@ -2,7 +2,7 @@
 ### Simplified version of original script from https://github.com/SmartCash/smartnode
 ### ATTENTION: This installer does not include anti-ddos script and upgrade script.
 
-#### This shell script comes with 4 cronjobs: 
+#### This shell script comes with 3 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh`
 2. Make sure the daemon is never stuck: `checkdaemon.sh`
 4. Clear the log file every other day: `clearlog.sh`

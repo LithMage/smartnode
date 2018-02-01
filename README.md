@@ -1,18 +1,17 @@
 # SmartNode Upkeep Scripts
 ### Simplified version of original script from https://github.com/SmartCash/smartnode
-### ATTENTION: This installer does not include anti-ddos script.
+### ATTENTION: This installer does not include anti-ddos script and upgrade script.
 
 #### This shell script comes with 4 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh`
 2. Make sure the daemon is never stuck: `checkdaemon.sh`
-3. Make sure smartcash is always up-to-date: `upgrade.sh`
 4. Clear the log file every other day: `clearlog.sh`
 These scripts are downloaded from original Git: https://github.com/SmartCash/smartnode
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:
 ```
-wget https://raw.githubusercontent.com/LithMage/smartnode/simplified/install.sh
-bash ./install.sh
+wget https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
+bash ./install_simple_upkeep.sh
 ```
 
 #### Script will reboot your server.

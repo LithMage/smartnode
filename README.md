@@ -5,6 +5,7 @@
 #### This shell script comes with 3 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh`
 2. Make sure the daemon is never stuck: `checkdaemon.sh`
+3. Adds truncationfor debug.log every 5 min.
 - These scripts are downloaded from original Git: https://github.com/SmartCash/smartnode
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:

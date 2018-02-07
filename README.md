@@ -2,10 +2,11 @@
 ### Simplified version of original script from https://github.com/SmartCash/smartnode
 ### ATTENTION: This installer does not include anti-ddos script and upgrade script.
 
-#### This shell script comes with 3 cronjobs: 
+#### This shell script comes with 4 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh`
 2. Make sure the daemon is never stuck: `checkdaemon.sh`
-3. Adds truncationfor debug.log every 5 min.
+3. Upgrade script and its cronjob onto root user: `upgrade.sh`
+4. Adds truncation for debug.log every 15 min.
 - These scripts are downloaded from original Git: https://github.com/SmartCash/smartnode
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:

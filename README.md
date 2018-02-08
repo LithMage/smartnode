@@ -1,6 +1,6 @@
 # SmartNode Upkeep Scripts
 ### Simplified version of original script from https://github.com/SmartCash/smartnode
-### ATTENTION: This installer does not include anti-ddos script and upgrade script.
+### ATTENTION: This installer does not include anti-ddos script script.
 
 #### This shell script comes with 4 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh`

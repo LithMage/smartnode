@@ -6,7 +6,7 @@
 1. Make sure the daemon is always running: `makerun.sh`
 2. Make sure the daemon is never stuck: `checkdaemon.sh`
 3. Upgrade script and its cronjob onto root user: `upgrade.sh`
-4. Adds truncation for debug.log every 15 min.
+4. Adds truncation for debug.log every 15 min. (Thanks to @thoriumbr#3917 on discord)
 - These scripts are downloaded from original Git: https://github.com/SmartCash/smartnode
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:

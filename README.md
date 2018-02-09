@@ -30,3 +30,5 @@ bash ~/install_simple_upkeep.sh
 
 
 #### Your node now should be always running. BEE $SMART! https://smartcash.cc
+
+### Got questions about this script? Contact me on Smartcash Discord (user: LithStud#4168 )

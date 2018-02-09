@@ -11,7 +11,7 @@
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:
 ```
-wget -O ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
+wget --output-document ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
 bash ~/install_simple_upkeep.sh
 ```
 

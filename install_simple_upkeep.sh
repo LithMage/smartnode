@@ -15,7 +15,7 @@ if ! (dpkg -s smartcashd | grep -F "ok installed") &>/dev/null; then
 	read IGNORE
 fi
 
-if ! [ -d "~/smartnode/" ]
+if ! [ -d ~/smartnode/ ]
 then
 	echo "Creating ~/smartnode/"
 	mkdir ~/smartnode/
@@ -24,20 +24,25 @@ fi
 # Change the directory to ~/smartnode/
 cd ~/smartnode/
 
+# Record username to be used from root
+echo $(whoami) > ./snuser
+
 echo "Downloading scripts makerun, checkdaemon, clearlog..."
 
 # Download the appropriate scripts
-wget -O ./makerun.sh https://raw.githubusercontent.com/SmartCash/smartnode/master/makerun.sh
-wget -O ./checkdaemon.sh https://raw.githubusercontent.com/SmartCash/smartnode/master/checkdaemon.sh
-wget -O ./upgrade.sh https://raw.githubusercontent.com/SmartCash/smartnode/master/upgrade.sh
+wget -O ./makerun.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/makerun.sh
+wget -O ./checkdaemon.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/checkdaemon.sh
+wget -O ./upgrade.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/upgrade.sh
 
-# Create masternode folder for root and move upgrade file to it
-# Remove upgrade.sh from non root user
+# Create masternode folder for root and move upgrade specific files to it
+# Remove upgrade.sh and snuser files from non root user
 if ! [ $(id -u) -eq 0 ]
 then
 	sudo mkdir ~root/smartnode/
-	sudo cp -r ./upgrade.sh ~root/smartnode/upgrade.sh
+	sudo cp ./upgrade.sh ~root/smartnode/upgrade.sh
+	sudo cp ./snuser ~root/smartnode/snuser
 	rm ./upgrade.sh
+	rm ./snuser
 fi
 
 echo "Adding scripts to scheduler..."

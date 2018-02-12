@@ -1,13 +1,19 @@
 # SmartNode Upkeep Scripts
-### Simplified version of original script from https://github.com/SmartCash/smartnode
+### Streamlined version of original scripts from https://github.com/SmartCash/smartnode
 ### ATTENTION: This installer does not include anti-ddos script script.
 
+## This is not full bash node installer!
+
 #### This shell script comes with 4 cronjobs: 
-1. Make sure the daemon is always running: `makerun.sh`
-2. Make sure the daemon is never stuck: `checkdaemon.sh`
-3. Upgrade script and its cronjob onto root user: `upgrade.sh`
+1. Make sure the daemon is always running: `makerun.sh` script
+2. Make sure the daemon is never stuck: `checkdaemon.sh` script
+3. Upgrade script and its cronjob onto root user: `upgrade.sh` script
 4. Adds truncation for debug.log every 15 min. (Thanks to @thoriumbr#3917 on discord)
-- These scripts are downloaded from original Git: https://github.com/SmartCash/smartnode
+
+#### Make sure you have enough space to be able to download scripts (this will empty log file):
+```
+truncate --size 0 ~/.smartcash/debug.log
+```
 
 #### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:
 ```
@@ -28,7 +34,17 @@ bash ~/install_simple_upkeep.sh
  smartcash-cli smartnode status
  ```
 
+#### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:
+```
+echo "" > ~/smartnode/MAINTENANCE
+```
+#### To enable them again, just remove the file:
+```
+rm ~/smartnode/MAINTENANCE
+```
+
 
 #### Your node now should be always running. BEE $SMART! https://smartcash.cc
 
 ### Got questions about this script? Contact me on Smartcash Discord (user: LithStud#4168 )
+#### Thanks to Zaphoid#5003 for letting me bounce questions about linux!

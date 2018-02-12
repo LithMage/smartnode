@@ -11,8 +11,12 @@ then
     snuser=$(cat ~root/smartnode/snuser)
     # Make sure makerun and checkdaemon on user knows we about to upgrade wallet
     echo $(date) > ~root/smartnode/MAINTENANCE
-    cp ~root/smartnode/MAINTENANCE /home/$snuser/smartnode/MAINTENANCE
-    chmod 0666 /home/$snuser/smartnode/MAINTENANCE
+    # Move maintenance file only if wallet user is not root
+    if [ "$snuser" != "root" ]
+    then
+        cp ~root/smartnode/MAINTENANCE /home/$snuser/smartnode/MAINTENANCE
+        chmod 0666 /home/$snuser/smartnode/MAINTENANCE
+    fi
 
     su $snuser -c 'smartcash-cli stop'
     sleep 20
@@ -21,7 +25,12 @@ then
     su $snuser -c 'smartcashd'
 
     # Remove MAINTENANCE file so makerun and checkdaemon works as usual
-    rm /home/$snuser/smartnode/MAINTENANCE
+    if [ "$snuser" != "root" ]
+    then
+        rm /home/$snuser/smartnode/MAINTENANCE
+    else
+        rm ~root/smartnode/MAINTENANCE
+    fi
 else
     exit
 fi

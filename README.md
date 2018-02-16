@@ -7,15 +7,17 @@
 #### This shell script comes with 4 cronjobs: 
 1. Make sure the daemon is always running: `makerun.sh` script
 2. Make sure the daemon is never stuck: `checkdaemon.sh` script
-3. Upgrade script and its cronjob onto root user: `upgrade.sh` script
+3. Upgrade script and its cronjob onto root user: `upgrade.sh` script (will be placed on root)
 4. Adds truncation for debug.log every 15 min. (Thanks to @thoriumbr#3917 on discord)
+
+#### Login to your vps with user used to install wallet (thats the one you made `.smartcash` folder and smartcash.conf file. DO NOT MIX IT UP!
 
 #### Make sure you have enough space to be able to download scripts (this will empty log file):
 ```
 truncate --size 0 ~/.smartcash/debug.log
 ```
 
-#### Login to your vps with user used to install wallet, donwload the install.sh file and then run it:
+#### Donwload the install.sh file and then run it:
 ```
 wget --output-document ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
 bash ~/install_simple_upkeep.sh

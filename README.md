@@ -35,7 +35,8 @@ bash ~/install_simple_upkeep.sh
  ```
  smartcash-cli smartnode status
  ```
-
+ 
+# Advanced usage for diagnostics
 #### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:
 ```
 echo "" > ~/smartnode/MAINTENANCE

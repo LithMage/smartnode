@@ -1,6 +1,6 @@
 # SmartNode Upkeep Scripts
 ### Streamlined version of original scripts from https://github.com/SmartCash/smartnode
-### ATTENTION: This installer does not include anti-ddos script script.
+### ATTENTION: This installer does not include anti-ddos script.
 
 ## This is not full bash node installer!
 
@@ -17,7 +17,7 @@
 truncate --size 0 ~/.smartcash/debug.log
 ```
 
-#### Donwload the install.sh file and then run it:
+#### Download the install_simple_upkeep.sh file and then run it:
 ```
 wget --output-document ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
 bash ~/install_simple_upkeep.sh

@@ -15,7 +15,7 @@ if ! (dpkg -s smartcashd | grep -F "ok installed") &>/dev/null; then
 	read IGNORE
 fi
 
-if ! [ -d ~/.smartcash/ ]
+if ! [ -d ~/.smartcash/ ] || ! [ -f ~/.smartcash/smartcash.conf ]
 then
 	echo "~/.smartcash folder not found. Make sure you are logged into user that has .smartcash folder."
 	echo "Installation of Upkeep Scripts will be now terminated (no changes to system done)."

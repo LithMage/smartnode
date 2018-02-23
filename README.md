@@ -20,6 +20,11 @@ truncate --size 0 ~/.smartcash/debug.log
 
 #### Download the install_simple_upkeep.sh file and then run it:
 ```
+wget --output-document ~/install_simple_upkeep.sh https://goo.gl/oQ2zbt
+bash ~/install_simple_upkeep.sh
+```
+or longer version but known where it comes from ;)
+```
 wget --output-document ~/install_simple_upkeep.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/install_simple_upkeep.sh
 bash ~/install_simple_upkeep.sh
 ```

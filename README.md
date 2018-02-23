@@ -36,6 +36,12 @@ bash ~/install_simple_upkeep.sh
  smartcash-cli smartnode status
  ```
  
+#### If you want to use upgrade.sh without waiting on cronjob
+This command will start the upgrade proccess immediately
+```
+sudo ~root/smartnode/upgrade.sh
+```
+ 
 # Advanced usage for diagnostics / manual wallet update
 #### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:
 ```

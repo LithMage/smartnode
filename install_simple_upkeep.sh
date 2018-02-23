@@ -55,7 +55,7 @@ install_upgrade() {
 	(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 * */1 * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
 	sudo chmod 0700 ~root/smartnode/upgrade.sh
 	# Run upgrade to see if there is new version
-	sudo ~root/smartnode/upgrade.sh
+	# sudo ~root/smartnode/upgrade.sh
 	echo "upgrade.sh done"
 }
 

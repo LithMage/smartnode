@@ -69,7 +69,7 @@ echo "clearlog added"
 
 echo "Adding Upgrade cronjob to root user."
 # Add upgrade script to root crontab
-(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "*/120 * * * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
+(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 */2 * * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
 echo "upgrade added to root"
 
 echo "Making scripts executable..."

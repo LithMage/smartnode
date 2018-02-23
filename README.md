@@ -45,7 +45,7 @@ sudo ~root/smartnode/upgrade.sh
 # Advanced usage for diagnostics / manual wallet update
 #### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:
 ```
-echo "" > ~/smartnode/MAINTENANCE
+touch ~/smartnode/MAINTENANCE
 ```
 #### To enable them again, just remove the file:
 ```

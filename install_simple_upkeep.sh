@@ -71,6 +71,7 @@ crontab -l | sed '/.smartcash\/debug.log/d'
 echo "Installing makerun.sh..."
 wget -O ./makerun.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/makerun.sh
 # Create a cronjob for making sure smartcashd is always running
+(crontab -l 2>/dev/null | grep -v -F "@reboot smartcashd" ; echo "@reboot smartcashd" ) | crontab -
 (crontab -l 2>/dev/null | grep -v -F "smartnode/makerun.sh" ; echo "*/5 * * * * ~/smartnode/makerun.sh" ) | crontab -
 chmod 0700 ./makerun.sh
 echo "makerun.sh done"

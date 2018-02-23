@@ -1,5 +1,6 @@
 #!/bin/bash
 # checkdaemon.sh
+# Version: 2018.02.24
 # Modified version by Rimvydas V.
 # Make sure the daemon is not stuck.
 # Add the following to the crontab (i.e. crontab -e)

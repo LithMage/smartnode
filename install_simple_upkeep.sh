@@ -1,5 +1,7 @@
 #!/bin/bash
 # install.sh
+# Version: 2018.02.24
+# By Rimvydas V.
 # Installs smartnode upkeep scripts
 # Simplified version of original script from https://github.com/SmartCash/smartnode
 

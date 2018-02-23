@@ -4,10 +4,15 @@
 # Make sure smartcash is up-to-date
 # Script should be on root user
 # Add the following to the crontab (i.e. sudo crontab -e) from user wallet is on
-# */120 * * * * ~root/smartnode/upgrade.sh
+# 0 * */1 * * ~root/smartnode/upgrade.sh
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+apt update
 
 if apt list --upgradable | grep -v grep | grep smartcashd > /dev/null
 then
+    echo "Upgrade in progress $(date)"
     snuser=$(cat ~root/smartnode/snuser)
     # Make sure makerun and checkdaemon on user knows we about to upgrade wallet
     echo $(date) > ~root/smartnode/MAINTENANCE
@@ -19,9 +24,8 @@ then
     fi
 
     su $snuser -c 'smartcash-cli stop'
-    sleep 20
-    apt update && apt install smartcashd -y
-    sleep 20
+    sleep 10
+    apt install smartcashd -y
     su $snuser -c 'smartcashd'
 
     # Remove MAINTENANCE file so makerun and checkdaemon works as usual
@@ -31,6 +35,7 @@ then
     else
         rm ~root/smartnode/MAINTENANCE
     fi
+    echo "Upgrade done."
 else
     exit
 fi

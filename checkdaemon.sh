@@ -1,5 +1,6 @@
 #!/bin/bash
 # checkdaemon.sh
+# Modified version by Rimvydas V.
 # Make sure the daemon is not stuck.
 # Add the following to the crontab (i.e. crontab -e)
 # */30 * * * * ~/smartnode/checkdaemon.sh

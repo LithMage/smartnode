@@ -34,49 +34,64 @@ cd ~/smartnode/
 # Record username to be used from root
 echo $(whoami) > ./snuser
 
-echo "Downloading scripts makerun, checkdaemon, clearlog..."
+# Upgrade installation in function for ease of access
+install_upgrade() {
+	echo "Installing checkdaemon.sh..."
+	wget -O ./upgrade.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/upgrade.sh
 
-# Download the appropriate scripts
+	# Create masternode folder for root and move upgrade specific files to it
+	# Remove upgrade.sh and snuser files from non root user
+	if ! [ $(id -u) -eq 0 ]
+	then
+		echo "Moving upgrade.sh to root user..."
+		sudo mkdir ~root/smartnode/
+		sudo cp ./upgrade.sh ~root/smartnode/upgrade.sh
+		sudo cp ./snuser ~root/smartnode/snuser
+		rm ./upgrade.sh ./snuser
+		echo "Moving upgrade.sh to root done"
+	fi
+	
+	# Add upgrade script to root crontab
+	(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 * */1 * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
+	sudo chmod 0700 ~root/smartnode/upgrade.sh
+	# Run upgrade to see if there is new version
+	sudo ~root/smartnode/upgrade.sh
+	echo "upgrade.sh done"
+}
+
+# Remove old crontabs (removing all is bad idea as user might have custom ones)
+sudo crontab -l | sed '/smartnode\/upgrade.sh/d'
+crontab -l | sed '/smartnode\/makerun.sh/d'
+crontab -l | sed '/smartnode\/checkdaemon.sh/d'
+crontab -l | sed '/smartnode\/clearlog.sh/d'
+crontab -l | sed '/.smartcash\/debug.log/d'
+
+echo "Installing makerun.sh..."
 wget -O ./makerun.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/makerun.sh
-wget -O ./checkdaemon.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/checkdaemon.sh
-wget -O ./upgrade.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/upgrade.sh
-
-# Create masternode folder for root and move upgrade specific files to it
-# Remove upgrade.sh and snuser files from non root user
-if ! [ $(id -u) -eq 0 ]
-then
-	sudo mkdir ~root/smartnode/
-	sudo cp ./upgrade.sh ~root/smartnode/upgrade.sh
-	sudo cp ./snuser ~root/smartnode/snuser
-	rm ./upgrade.sh
-	rm ./snuser
-fi
-
-echo "Adding scripts to scheduler..."
 # Create a cronjob for making sure smartcashd is always running
-(crontab -l 2>/dev/null | grep -v -F "smartnode/makerun.sh" ; echo "*/1 * * * * ~/smartnode/makerun.sh" ) | crontab -
-echo "makerun added"
+(crontab -l 2>/dev/null | grep -v -F "smartnode/makerun.sh" ; echo "*/5 * * * * ~/smartnode/makerun.sh" ) | crontab -
+chmod 0700 ./makerun.sh
+echo "makerun.sh done"
 
+echo "Installing checkdaemon.sh..."
+wget -O ./checkdaemon.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/checkdaemon.sh
 # Create a cronjob for making sure the daemon is never stuck
 (crontab -l 2>/dev/null | grep -v -F "smartnode/checkdaemon.sh" ; echo "*/30 * * * * ~/smartnode/checkdaemon.sh" ) | crontab -
-echo "checkdaemon added"
+chmod 0700 ./checkdaemon.sh
+echo "checkdaemon.sh done"
 
-# Remove old script job if exist
-crontab -l | sed '/smartcash\/debug.log/d'
+echo "Adding truncate job for debug.log..."
 # Create a cronjob for clearing the log file
 (crontab -l 2>/dev/null | grep -v -F "truncate --size 0 ~/.smartcash/debug.log" ; echo "*/15 * * * * truncate --size 0 ~/.smartcash/debug.log" ) | crontab -
-echo "clearlog added"
+echo "truncate job added"
 
-echo "Adding Upgrade cronjob to root user."
-# Add upgrade script to root crontab
-(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 */2 * * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
-echo "upgrade added to root"
-
-echo "Making scripts executable..."
-# Give execute permission to the cron scripts
-chmod 0700 ./makerun.sh
-chmod 0700 ./checkdaemon.sh
-sudo chmod 0700 ~root/smartnode/upgrade.sh
+read -e -n 1 -p "Install Upgrade script? (y/n) [y]" ans;
+case $ans in
+    n|N)
+		echo "Chose not to install Upgrade script.";;
+    *)
+        install_upgrade;;
+esac
 
 
 echo "ATENTION: Server will now be rebooted, you will be disconected and will need to login to server again."

@@ -47,6 +47,15 @@ This command will start the upgrade proccess immediately
 ```
 sudo ~root/smartnode/upgrade.sh
 ```
+
+To disable upgrade script checking daily please run this command to disable its cronjob
+```
+sudo crontab -l | sed '/smartnode\/upgrade.sh/d' | sudo crontab -
+```
+To add it back to daily auto check for updates
+```
+(sudo crontab -l; echo "0 * */1 * * ~root/smartnode/upgrade.sh") | sudo crontab -
+```
  
 # Advanced usage for diagnostics / manual wallet update
 #### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:

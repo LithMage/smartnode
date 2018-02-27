@@ -61,12 +61,9 @@ install_upgrade() {
 	echo "upgrade.sh done"
 }
 
-# Remove old crontabs (removing all is bad idea as user might have custom ones)
-sudo crontab -l | sed '/smartnode\/upgrade.sh/d'
-crontab -l | sed '/smartnode\/makerun.sh/d'
-crontab -l | sed '/smartnode\/checkdaemon.sh/d'
-crontab -l | sed '/smartnode\/clearlog.sh/d'
-crontab -l | sed '/.smartcash\/debug.log/d'
+# Remove old crontabs associated with smartcash (removing all is bad idea as user might have custom ones)
+sudo crontab -l | sed '/smartcash/d' | sed '/smartnode/d' | sudo crontab -
+crontab -l | sed '/smartcash/d' | sed '/smartnode/d' | crontab -
 
 echo "Installing makerun.sh..."
 wget -O ./makerun.sh https://raw.githubusercontent.com/LithMage/smartnode/simplified/makerun.sh

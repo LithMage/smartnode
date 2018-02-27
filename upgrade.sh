@@ -1,6 +1,6 @@
 #!/bin/bash
 # upgrade.sh
-# Version: 2018.02.24
+# Version: 2018.02.27
 # Modified version by Rimvydas V.
 # Make sure smartcash is up-to-date
 # Script should be on root user

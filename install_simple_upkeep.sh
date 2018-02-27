@@ -1,6 +1,6 @@
 #!/bin/bash
 # install.sh
-# Version: 2018.02.24
+# Version: 2018.02.27
 # By Rimvydas V.
 # Installs smartnode upkeep scripts
 # Simplified version of original script from https://github.com/SmartCash/smartnode
@@ -54,7 +54,13 @@ install_upgrade() {
 	fi
 	
 	# Add upgrade script to root crontab
-	(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 * */1 * * ~root/smartnode/upgrade.sh" ) | sudo crontab -
+	read -e -n 1 -p "Enable Daily update and upgrade check? (y/n) [n]" ans;
+	case $ans in
+    	y|Y)
+			(sudo crontab -l 2>/dev/null | grep -v -F "smartnode/upgrade.sh" ; echo "0 * */1 * * ~root/smartnode/upgrade.sh" ) | sudo crontab - ;;
+    	*)
+        	echo "Chose not to enable auto update.";;
+	esac
 	sudo chmod 0700 ~root/smartnode/upgrade.sh
 	# Run upgrade to see if there is new version
 	# sudo ~root/smartnode/upgrade.sh

@@ -27,6 +27,15 @@ then
     su $snuser -c 'smartcash-cli stop'
     sleep 10
     apt install smartcashd -y
+    
+    # Remove peers file
+    if [ "$snuser" != "root" ]
+    then
+        rm /home/$snuser/.smartcash/peers.*
+    else
+        rm ~root/.smartcash/peers.*
+    fi
+    
     su $snuser -c 'smartcashd'
 
     # Remove MAINTENANCE file so makerun and checkdaemon works as usual

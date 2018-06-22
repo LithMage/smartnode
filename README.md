@@ -1,5 +1,5 @@
 # SmartNode Upkeep Scripts
-# Version: 2018.02.27
+# Version: 2018.06.22
 ### Streamlined version of original scripts from https://github.com/SmartCash/smartnode
 ### ATTENTION: This installer does not include anti-ddos script.
 
@@ -47,6 +47,7 @@ This command will start the upgrade proccess immediately
 ```
 sudo ~root/smartnode/upgrade.sh
 ```
+After upgrade is done daemon is restarted with forced reindexing of database (may take 15+ min).
 
 To disable upgrade script checking daily please run this command to disable its cronjob
 ```

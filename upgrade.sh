@@ -1,6 +1,6 @@
 #!/bin/bash
 # upgrade.sh
-# Version: 2018.02.27
+# Version: 2018.06.22
 # Modified version by Rimvydas V.
 # Make sure smartcash is up-to-date
 # Script should be on root user
@@ -36,7 +36,7 @@ then
         rm ~root/.smartcash/peers.*
     fi
     
-    su $snuser -c 'smartcashd'
+    su $snuser -c 'smartcashd -reindex'
 
     # Remove MAINTENANCE file so makerun and checkdaemon works as usual
     if [ "$snuser" != "root" ]

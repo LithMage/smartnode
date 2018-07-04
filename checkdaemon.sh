@@ -1,6 +1,6 @@
 #!/bin/bash
 # checkdaemon.sh
-# Version: 2018.02.24
+# Version: 2018.07.04
 # Modified version by Rimvydas V.
 # Make sure the daemon is not stuck.
 # Add the following to the crontab (i.e. crontab -e)
@@ -19,6 +19,7 @@ smartcash-cli getblockcount > ~/smartnode/blockcount
 
 if [ "$previousBlock" == "$currentBlock" ]
 then
+    echo "checkdaemon.sh : $(date)" >> ~/smartnode/log
     smartcash-cli stop
     sleep 10
     smartcashd

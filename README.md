@@ -1,5 +1,5 @@
 # SmartNode Upkeep Scripts
-# Version: 2018.06.22
+# Version: 2018.07.04
 ### Streamlined version of original scripts from https://github.com/SmartCash/smartnode
 ### ATTENTION: This installer does not include anti-ddos script.
 

@@ -59,6 +59,12 @@ To add it back to daily auto check for updates
 ```
  
 # Advanced usage for diagnostics / manual wallet update
+
+#### At any time user can check if any of scripts has been triggered by running:
+```
+cat ~/smartnode/log
+```
+
 #### If there is a need to manualy disable makerun and checkdaemon just make a MAINTENANCE file inside smartnode folder:
 ```
 touch ~/smartnode/MAINTENANCE
